@@ -1,8 +1,15 @@
+import os
 import streamlit as st
 import joblib
 import pandas as pd
 from churn_pipeline import ChurnPipeline
-pipeline = joblib.load("final_churn_pipeline.pkl")  # make sure correct path
+
+# Auto-detect correct path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # path of /app/
+MODEL_PATH = os.path.join(BASE_DIR, "final_churn_pipeline.pkl")
+
+pipeline = joblib.load(MODEL_PATH)
+
 
 st.title("📌 Customer Churn Risk Predictor")
 st.write("Predict whether a customer is **Low**, **Medium**, or **High** churn risk.")
